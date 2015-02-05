@@ -1,0 +1,72 @@
+extends layout
+
+block content
+  #list
+    .videos
+      if vids
+        each vid in vids
+          //- a.video(href="/#{loc.citySlug}/#{vid.slug}/#{vid.eid}", horizontal, layout)
+          a.video.card(href="/#{vid.slug}/#{vid.id}", horizontal, layout)
+            .left
+              img(src="#{vid.thumbnail.hqDefault}")
+            .right(flex three)
+              h3.truncate.two #{vid.title}            
+              //- .tag-list
+              //-   each tag in vid.tags
+              //-     span.tag(class="#{tag}") #{tag}
+
+              //- .date
+              //-   //- core-icon(icon="today")
+              //-   core-icon(icon="query-builder")
+              //-   span.date #{moment(vid.start_time).calendar()}
+              //-   span #{moment(vid.start_time).format('LT')}
+
+              //- .location.truncate
+              //-   core-icon(icon="room")
+              //-   span #{vid.location}
+
+    //- template
+    //-   paper-tabs(selected='{{selectedPage}}')
+    //-     paper-tab 
+    //-       core-icon(icon="today")
+    //-       | Feed
+    //-     paper-tab
+    //-       core-icon(icon="explore")
+    //-       | Explore
+    //-     //- paper-tab
+    //-     //-   core-icon(icon="favorite")
+    //-     //-   | Favorite
+    //-     //- paper-tab
+    //-     //-   core-icon(icon="star")
+    //-     //-   | Start
+    //-     //- paper-tab
+    //-     //-   core-icon(icon="visibility")
+    //-     //-   | Watching
+    //-     paper-tab
+    //-       core-icon(icon="perm-identity")
+    //-       | Me
+
+    //-   swipe-pages(selected='{{selectedPage}}')
+    //-     swipe-page(layout, vertical, center, center-justified)
+    //-       .videos
+    //-         if vids
+    //-           each vid in vids
+    //-             //- a.video(href="/#{loc.citySlug}/#{vid.slug}/#{vid.eid}", horizontal, layout)
+    //-             a.video(href="/asd", horizontal, layout)
+    //-               .left
+    //-                 img(src="#{vid.pic}")
+    //-               .right(flex three)
+    //-                 h3.truncate.two #{vid.title}            
+    //-                 //- .tag-list
+    //-                 //-   each tag in vid.tags
+    //-                 //-     span.tag(class="#{tag}") #{tag}
+
+    //-                 //- .date
+    //-                 //-   //- core-icon(icon="today")
+    //-                 //-   core-icon(icon="query-builder")
+    //-                 //-   span.date #{moment(vid.start_time).calendar()}
+    //-                 //-   span #{moment(vid.start_time).format('LT')}
+
+    //-                 //- .location.truncate
+    //-                 //-   core-icon(icon="room")
+    //-                 //-   span #{vid.location}

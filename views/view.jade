@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  #list
+    .videos
+      if vid
+        google-youtube(videoid="#{vid.id}")
