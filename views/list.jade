@@ -1,29 +1,30 @@
 extends layout
 
 block content
-  #list
+  ul#list
     .videos
       if vids
         each vid in vids
           //- a.video(href="/#{loc.citySlug}/#{vid.slug}/#{vid.eid}", horizontal, layout)
-          a.video.card(href="/#{vid.slug}/#{vid.id}", horizontal, layout)
-            .left
-              img(src="#{vid.thumbnail.hqDefault}")
-            .right(flex three)
-              h3.truncate.two #{vid.title}            
-              //- .tag-list
-              //-   each tag in vid.tags
-              //-     span.tag(class="#{tag}") #{tag}
+          li
+            a.video.card(href="/#{vid.slug}/#{vid.id}", horizontal, layout)
+              .left
+                img(src="#{vid.thumbnail.hqDefault}", alt="#{vid.title}")
+              .right(flex three)
+                h2.truncate.two #{vid.title}
+                //- .tag-list
+                //-   each tag in vid.tags
+                //-     span.tag(class="#{tag}") #{tag}
 
-              //- .date
-              //-   //- core-icon(icon="today")
-              //-   core-icon(icon="query-builder")
-              //-   span.date #{moment(vid.start_time).calendar()}
-              //-   span #{moment(vid.start_time).format('LT')}
+                //- .date
+                //-   //- core-icon(icon="today")
+                //-   core-icon(icon="query-builder")
+                //-   span.date #{moment(vid.start_time).calendar()}
+                //-   span #{moment(vid.start_time).format('LT')}
 
-              //- .location.truncate
-              //-   core-icon(icon="room")
-              //-   span #{vid.location}
+                //- .location.truncate
+                //-   core-icon(icon="room")
+                //-   span #{vid.location}
 
     //- template
     //-   paper-tabs(selected='{{selectedPage}}')

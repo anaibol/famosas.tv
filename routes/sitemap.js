@@ -9,24 +9,6 @@ var zlib = require('zlib');
 var db = require('monk')('localhost/famosas');
 var Keywords = db.get('keywords');
 
-function slug(str) {
-  str = str.replace(/^\s+|\s+$/g, ''); // trim
-  str = str.toLowerCase();
-
-  // remove accents, swap ñ for n, etc
-  var from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;";
-  var to = "aaaaaeeeeeiiiiooooouuuunc------";
-  for (var i = 0, l = from.length; i < l; i++) {
-    str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
-  }
-
-  str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
-    .replace(/\s+/g, '-') // collapse whitespace and replace by -
-    .replace(/-+/g, '-'); // collapse dashes
-
-  return str;
-}
-
 router.get('/index.xml.gz', function(req, res) {
   var siteMapFile = publicDir + 'index.xml.gz';
   //fs.exists(siteMapFile, function(exists) {
@@ -138,7 +120,7 @@ function generateSitemap(id, host, siteMapFile, cb) {
       //day = ('0' + date.getDate()).slice(-2);
 
       //date = date.getFullYear() + '-' + month + '-' + day;
-      url = 'http://' + host + '/' + slug(keyword.keyword);
+      url = 'http://' + host + '/' + keyword.slug;
       xml += '<url>';
       xml += '<loc>' + url + '</loc>';
       //xml += '<lastmod>' + date + '</lastmod>';
