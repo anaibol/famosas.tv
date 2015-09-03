@@ -7,11 +7,11 @@ block content
         each vid in vids
           //- a.video(href="/#{loc.citySlug}/#{vid.slug}/#{vid.eid}", horizontal, layout)
           li
-            a.video.card(href="/#{vid.slug}/#{vid.id}", horizontal, layout)
+            a.video.card(href="/#{vid.snippet.slug}/#{vid.id.videoId}", horizontal, layout)
               .left
-                img(src="#{vid.thumbnail.hqDefault}", alt="#{vid.title}")
+                img(src="#{vid.snippet.thumbnails.high.url}", alt="#{vid.title}")
               .right(flex three)
-                h2.truncate.two #{vid.title}
+                h2.truncate.two #{vid.snippet.title}
                 //- .tag-list
                 //-   each tag in vid.tags
                 //-     span.tag(class="#{tag}") #{tag}
@@ -28,7 +28,7 @@ block content
 
     //- template
     //-   paper-tabs(selected='{{selectedPage}}')
-    //-     paper-tab 
+    //-     paper-tab
     //-       core-icon(icon="today")
     //-       | Feed
     //-     paper-tab
@@ -57,7 +57,7 @@ block content
     //-               .left
     //-                 img(src="#{vid.pic}")
     //-               .right(flex three)
-    //-                 h3.truncate.two #{vid.title}            
+    //-                 h3.truncate.two #{vid.title}
     //-                 //- .tag-list
     //-                 //-   each tag in vid.tags
     //-                 //-     span.tag(class="#{tag}") #{tag}

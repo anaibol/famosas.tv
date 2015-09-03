@@ -1,6 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var youtube = require('youtube-feeds');
+// var youtube = require('youtube-feeds');
+
+var Youtube = require('youtube-node');
+
+var youtube = new Youtube();
+
+youtube.setKey('AIzaSyCXNnoeEVyQq39OBD0SF3KOxU3uuG54doU');
 
 var db = require('monk')('localhost/famosas');
 var Keywords = db.get('keywords');
@@ -29,18 +35,14 @@ function replaceAll(str, target, replacement) {
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  youtube.feeds.videos({q: 'famosas desnudas'}, function(err, data){
+  youtube.search('famosas desnudas', 2, function(err, data){
     var videos = data.items;
 
     for (var i = videos.length - 1; i >= 0; i--) {
-      videos[i].slug = slug(videos[i].title);
+      videos[i].snippet.slug = slug(videos[i].snippet.title);
     }
 
-    // youtube.feeds.related(videos[1].id, function(err, related){
-    //   console.log(data.items)
-
-      res.render('list', {vids: data.items});
-    // });
+    res.render('list', {vids: videos});
   });
 });
 
@@ -52,34 +54,27 @@ router.get('/:keyword', function(req, res) {
   } else {
     var searchTerm = replaceAll(req.params.keyword, '-', ' ');
 
-    youtube.feeds.videos({q: searchTerm}, function(err, data){
+    youtube.search(searchTerm, 2, function(err, data){
       if (err) {
-        res.render('list', {title: req.params.keyword});
         return;
       }
 
       var videos = data.items;
 
       for (var i = videos.length - 1; i >= 0; i--) {
-        videos[i].slug = slug(videos[i].title);
+        videos[i].snippet.slug = slug(videos[i].snippet.title);
       }
 
-      // youtube.feeds.related(videos[1].id, function(err, related){
-      //   console.log(data.items)
-        res.render('list', {vids: data.items, title: req.params.keyword});
-      // });
+      res.render('list', {vids: videos, title: req.params.keyword});
     });
   }
 });
 
 router.get('/:slug/:id', function(req, res) {
-  youtube.video(req.params.id, function(err, data){
-    var video = data;
-
-    // youtube.feeds.related(video.id, function(err, data){
-    //   console.log(data.items)
-      res.render('view', {vid: video, title: video.title});
-    // });
+  youtube.getById(req.params.id, function(err, data) {
+    var vid = data.items[0];
+    console.log(vid);
+    res.render('view', {vid: vid, title: vid.snippet.title});
   });
 });
 

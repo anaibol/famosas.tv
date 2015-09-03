@@ -75,7 +75,7 @@ function generateSitemapIndex(host, siteMapFile, cb) {
 
     xml += '</sitemapindex>';
 
-    zlib.gzip(xml, function(_, result) { // The callback will give you the 
+    zlib.gzip(xml, function(_, result) { // The callback will give you the
       fs.writeFile(siteMapFile, result, function(err) {
         if (err) {
           console.log(err);
@@ -131,7 +131,7 @@ function generateSitemap(id, host, siteMapFile, cb) {
 
     xml += '</urlset>';
 
-    zlib.gzip(xml, function(_, result) { // The callback will give you the 
+    zlib.gzip(xml, function(_, result) { // The callback will give you the
       fs.writeFile(siteMapFile, result, function(err) {
         if (err) {
           console.log(err);
