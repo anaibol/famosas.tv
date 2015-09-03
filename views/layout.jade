@@ -8,20 +8,221 @@
 
 html
   include head
-  body
-    h1= title
-    //- include header
+  //- body
+    //- h1= title
+    //- //- include header
+    //- block content
+
+    //- //- script(type='text/javascript', src='/js/app.min.js')
+
+    //- block inline-scripts
+    //- script(src='//localhost:35729/livereload.js')
+
+    //- script.
+    //-   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    //-   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    //-   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    //-   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    //-   ga('create', 'UA-59531296-1', 'auto');
+    //-   ga('send', 'pageview');
+
+  body.single.single-video.postid-273.single-format-standard.wpb-js-composer.vc_responsive(class='js-comp-ver-4.7')
+    #header
+      .container
+        .row
+          #logo.col-sm-3
+            a(title='Just another WordPress site', href='http://videotube.marstheme.com')
+              img(src='http://videotube.marstheme.com/wp-content/themes/videotube/img/logo.png', alt='Just another WordPress site')
+          form(method='get', action='http://videotube.marstheme.com')
+            #header-search.col-sm-6
+              span.glyphicon.glyphicon-search.search-icon
+              input#search(value='', name='s', type='text', placeholder='Search here...')
+          #header-social.col-sm-3
+            a(href='#')
+              i.fa.fa-facebook
+            a(href='#')
+              i.fa.fa-twitter
+            a(href='#')
+              i.fa.fa-google-plus
+            a(href='#')
+              i.fa.fa-instagram
+            a(href='#')
+              i.fa.fa-linkedin
+            a(href='#')
+              i.fa.fa-tumblr
+            a(href='http://videotube.marstheme.com/feed/rss/')
+              i.fa.fa-rss
+    // /#header
+    #navigation-wrapper
+      .container
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.bs-navbar-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+        nav.collapse.navbar-collapse.bs-navbar-collapse(role='navigation')
+          // menu
+          ul#menu-header-menu.nav.navbar-nav.list-inline.menu
+            li#menu-item-2090.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-has-children.dropdown.menu-item-2090.depth
+              a(href='http://videotube.marstheme.com/')
+                | Home
+                b.caret
+              ul.dropdown-menu
+                li#menu-item-2224.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-2224.depth
+                  a(href='http://videotube.marstheme.com/homepage-v1-2-columns-left-sidebar/') V1 – 2 Columns – Left Sidebar
+                li#menu-item-2225.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-2225.depth
+                  a(href='http://videotube.marstheme.com/homepage-v1-2-columns-right-sidebar/') V1 – 2 Columns – Right Sidebar
+                li#menu-item-2232.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-2232.depth
+                  a(href='http://videotube.marstheme.com/homepage-v2-fullwidth-3-columns/') V2 – Fullwidth – 3 Columns
+                li#menu-item-2231.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-2231.depth
+                  a(href='http://videotube.marstheme.com/homepage-v3-fullwidth-4columns/') V3 – Fullwidth – 4columns
+                li#menu-item-2230.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-2230.depth
+                  a(href='http://videotube.marstheme.com/homepage-v4-fullwidth-6-columns/') V4 – Fullwidth – 6 Columns
+                li#menu-item-2229.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-2229.depth
+                  a(href='http://videotube.marstheme.com/homepage-v5-1-column-left-sidebar/') V5 – 1 Column – Left Sidebar
+                li#menu-item-2228.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-2228.depth
+                  a(href='http://videotube.marstheme.com/homepage-v5-1-column-right-sidebar/') V5 – 1 Column – Right Sidebar
+                li#menu-item-2227.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-2227.depth
+                  a(href='http://videotube.marstheme.com/homepage-v5-1-column-right-sidebar-version-2/') V5 – 1 Column – Right Sidebar – Version 2
+                li#menu-item-2226.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-2226.depth
+                  a(href='http://videotube.marstheme.com/homepage-v5-1-column-left-sidebar-version-2/') V5 – 1 Column – Left Sidebar – Version 2
+                li#menu-item-2269.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-2269.depth
+                  a(href='http://videotube.marstheme.com/layout-with-4-columns-and-featured-widget/') Layout with 4 Columns and Featured Widget
+                li#menu-item-2098.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-2098.depth
+                  a(href='http://videotube.marstheme.com/video-scrolling-page/') Video scrolling Page
+                li#menu-item-2097.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-2097.depth
+                  a(href='http://videotube.marstheme.com/post-scrolling-page/') Post scrolling Page
+            li#menu-item-2048.menu-item.menu-item-type-custom.menu-item-object-custom.menu-item-has-children.dropdown.menu-item-2048.depth
+              a(href='http://videotube.marstheme.com/video')
+                | Browse
+                b.caret
+              ul.dropdown-menu
+                li#menu-item-2072.menu-item.menu-item-type-taxonomy.menu-item-object-categories.menu-item-2072.depth
+                  a(href='http://videotube.marstheme.com/categories/trailers/') Trailers
+                li#menu-item-2073.menu-item.menu-item-type-taxonomy.menu-item-object-categories.menu-item-2073.depth
+                  a(href='http://videotube.marstheme.com/categories/food-health/') Food & Health
+                li#menu-item-2074.menu-item.menu-item-type-taxonomy.menu-item-object-categories.menu-item-2074.depth
+                  a(href='http://videotube.marstheme.com/categories/gaming/') Gaming
+                li#menu-item-2075.menu-item.menu-item-type-taxonomy.menu-item-object-categories.menu-item-2075.depth
+                  a(href='http://videotube.marstheme.com/categories/music/') Music
+                li#menu-item-2076.menu-item.menu-item-type-taxonomy.menu-item-object-categories.menu-item-2076.depth
+                  a(href='http://videotube.marstheme.com/categories/sports/') Sports
+                li#menu-item-2077.menu-item.menu-item-type-taxonomy.menu-item-object-categories.current-video-ancestor.current-menu-parent.current-video-parent.menu-item-2077.depth
+                  a(href='http://videotube.marstheme.com/categories/vlogs/') Vlogs
+            li#menu-item-2091.menu-item.menu-item-type-taxonomy.menu-item-object-categories.menu-item-2091.depth
+              a(href='http://videotube.marstheme.com/categories/trailers/') Trailers
+            li#menu-item-2092.menu-item.menu-item-type-taxonomy.menu-item-object-categories.menu-item-2092.depth
+              a(href='http://videotube.marstheme.com/categories/food-health/') Food & Health
+            li#menu-item-2080.menu-item.menu-item-type-post_type.menu-item-object-page.current_page_parent.menu-item-2080.depth
+              a(href='http://videotube.marstheme.com/blog/') Blog
+            li#menu-item-2044.menu-item.menu-item-type-custom.menu-item-object-custom.menu-item-has-children.dropdown.menu-item-2044.depth
+              a(href='#')
+                | Page
+                b.caret
+              ul.dropdown-menu
+                li#menu-item-2762.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-2762.depth
+                  a(href='http://videotube.marstheme.com/register/') Register
+                li#menu-item-2079.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-2079.depth
+                  a(href='http://videotube.marstheme.com/profile/') Profile
+                li#menu-item-2084.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-2084.depth
+                  a(href='http://videotube.marstheme.com/submit-video/') Submit
+                li#menu-item-2086.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-has-children.dropdown-submenu.menu-item-2086.depth
+                  a(href='http://videotube.marstheme.com/shortcodes/') Shortcodes
+                  ul.dropdown-menu
+                    li#menu-item-2087.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-2087.depth
+                      a(href='http://videotube.marstheme.com/faqs/') FAQs
+                li#menu-item-2082.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-2082.depth
+                  a(href='http://videotube.marstheme.com/page-fullwidth/') Page – Fullwidth
+                li#menu-item-2083.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-2083.depth
+                  a(href='http://videotube.marstheme.com/page-right-sidebar/') Page – Right Sidebar
+                li#menu-item-2088.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-2088.depth
+                  a(href='http://videotube.marstheme.com/privacy-policy/') Privacy Policy
+            li#menu-item-2078.menu-item.menu-item-type-custom.menu-item-object-custom.menu-item-2078.depth
+              a(href='http://themeforest.net/item/videotube-a-responsive-video-wordpress-theme/7214445?ref=phpface') Buy Now
+
     block content
 
-    //- script(type='text/javascript', src='/js/app.min.js')
-    
-    block inline-scripts
-    script(src='//localhost:35729/livereload.js')
-
-    script.
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-59531296-1', 'auto');
-      ga('send', 'pageview');
+    #footer
+      .container
+        .row
+          .col-sm-3.widget.widget_meta
+            h4.footer-widget-title Meta
+            ul
+              li
+                a(rel='nofollow', href='http://videotube.marstheme.com/wp-login.php?action=register') Register
+              li
+                a(rel='nofollow', href='http://videotube.marstheme.com/wp-login.php') Log in
+              li
+                a(href='http://videotube.marstheme.com/feed/')
+                  | Entries
+                  abbr(title='Really Simple Syndication') RSS
+              li
+                a(href='http://videotube.marstheme.com/comments/feed/')
+                  | Comments
+                  abbr(title='Really Simple Syndication') RSS
+              li
+                a(href='https://wordpress.org/', title='Powered by WordPress, state-of-the-art semantic personal publishing platform.') WordPress.org
+          .col-sm-3.widget.mars-keycloud-widgets
+            h4.footer-widget-title Tags Cloud
+            a.tag-link-78(href='http://videotube.marstheme.com/tag/band/', title='4 topics', style='font-size: 9.83333333333pt;') band
+            a.tag-link-92(href='http://videotube.marstheme.com/tag/delicious/', title='2 topics', style='font-size: 8pt;') delicious
+            a.tag-link-104(href='http://videotube.marstheme.com/tag/fail/', title='3 topics', style='font-size: 9pt;') Fail
+            a.tag-link-385(href='http://videotube.marstheme.com/video_tag/featuredvid/', title='20 topics', style='font-size: 15pt;') featuredvid
+            a.tag-link-108(href='http://videotube.marstheme.com/tag/food-2/', title='2 topics', style='font-size: 8pt;') food
+            a.tag-link-112(href='http://videotube.marstheme.com/tag/funny/', title='3 topics', style='font-size: 9pt;') funny
+            a.tag-link-129(href='http://videotube.marstheme.com/tag/live/', title='4 topics', style='font-size: 9.83333333333pt;') live
+            a.tag-link-259(href='http://videotube.marstheme.com/video_tag/movie/', title='8 topics', style='font-size: 11.9166666667pt;') Movie
+            a.tag-link-139(href='http://videotube.marstheme.com/tag/music-3/', title='4 topics', style='font-size: 9.83333333333pt;') music
+            a.tag-link-262(href='http://videotube.marstheme.com/video_tag/music-2/', title='7 topics', style='font-size: 11.5pt;') music
+            a.tag-link-268(href='http://videotube.marstheme.com/video_tag/official/', title='6 topics', style='font-size: 11.0833333333pt;') official
+            a.tag-link-147(href='http://videotube.marstheme.com/tag/perfomance/', title='4 topics', style='font-size: 9.83333333333pt;') perfomance
+            a.tag-link-163(href='http://videotube.marstheme.com/tag/recipe-2/', title='2 topics', style='font-size: 8pt;') recipe
+            a.tag-link-279(href='http://videotube.marstheme.com/video_tag/recipe/', title='3 topics', style='font-size: 9pt;') Recipe
+            a.tag-link-280(href='http://videotube.marstheme.com/video_tag/remix/', title='2 topics', style='font-size: 8pt;') remix
+            a.tag-link-289(href='http://videotube.marstheme.com/video_tag/song/', title='3 topics', style='font-size: 9pt;') song
+            a.tag-link-595(href='http://videotube.marstheme.com/video_tag/video/', title='6 topics', style='font-size: 11.0833333333pt;') video
+            a.tag-link-308(href='http://videotube.marstheme.com/video_tag/video-game/', title='6 topics', style='font-size: 11.0833333333pt;') Video Game
+            a.tag-link-193(href='http://videotube.marstheme.com/tag/videos/', title='3 topics', style='font-size: 9pt;') videos
+            a.tag-link-194(href='http://videotube.marstheme.com/tag/viral/', title='3 topics', style='font-size: 9pt;') viral
+          .col-sm-3.widget.mars-connected-widget
+            h4.footer-widget-title Stay Connected
+            ul.list-unstyled.social
+              li
+                a(href='#')
+                  i.fa.fa-facebook
+                  |  Facebook
+              li
+                a(href='#')
+                  i.fa.fa-twitter
+                  |  twitter
+              li
+                a(href='#')
+                  i.fa.fa-google-plus
+                  |  Google Plus
+              li
+                a(href='#')
+                  i.fa.fa-instagram
+                  |  Instagram
+              li
+                a(href='#')
+                  i.fa.fa-linkedin
+                  |  Linkedin
+              li
+                a(href='#')
+                  i.fa.fa-tumblr
+                  |  Tumblr
+              li
+                a(href='http://videotube.marstheme.com/feed/rss/')
+                  i.fa.fa-rss
+                  |  RSS
+          .col-sm-3.widget.widget_text
+            h4.footer-widget-title ABOUT VIDEOTUBE
+            .textwidget
+              p
+                | Donec rutrum varius quam non euismod. Nullam arcu urna, dignisim amsan bindum ut, fermentum a quam.
+              p
+                | Suspendisse fermentum augue vel nulla iaculis id tempus massa consequat. Donec venenatis leo eu felis condiment lorem ipsum.
+        .copyright
+          p
+            | Copyright 2014 By MarsTheme All rights reserved. Powered by WordPress & MarsTheme
+    // /#footer

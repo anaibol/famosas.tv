@@ -1,73 +1,304 @@
 extends layout
 
 block content
-  ul#list
-    .videos
-      if vids
-        each vid in vids
-          //- a.video(href="/#{loc.citySlug}/#{vid.slug}/#{vid.eid}", horizontal, layout)
-          li
-            a.video.card(href="/#{vid.snippet.slug}/#{vid.id.videoId}", horizontal, layout)
-              .left
-                img(src="#{vid.snippet.thumbnails.high.url}", alt="#{vid.title}")
-              .right(flex three)
-                h2.truncate.two #{vid.snippet.title}
-                //- .tag-list
-                //-   each tag in vid.tags
-                //-     span.tag(class="#{tag}") #{tag}
+  .container
+    .row
+      .col-sm-8
+        .section-header
+          h3 About 3 results
+          .section-nav
+            ul.sorting
+              li.sort-text Sort by:
+              li
+                a(href='/?s=music&order_post=latest') Latest
+              li
+                a(href='/?s=music&order_post=viewed') Viewed
+              li
+                a(href='/?s=music&order_post=liked') Liked
+              li
+                a(href='/?s=music&order_post=comments') Comments
+        .row.video-section.meta-maxwidth-230
+          each vid in vids
+            .col-sm-4.col-xs-6.item
+              a(title='Best TRANCE music 2014', href='/#{vid.snippet.slug}/#{vid.id.videoId}')
+                img.img-responsive.wp-post-image(width='230', height='150', src='#{vid.snippet.thumbnails.high.url}', alt='#{vid.snippet.title}')
+              h3
+                a(title='#{vid.snippet.title}', href='/#{vid.snippet.slug}/#{vid.id.videoId}')
+                  #{vid.snippet.title}
+              .meta
+                span.date 1 year ago
+                span.views
+                  i.fa.fa-eye
+                  | 7356
+                span.heart
+                  i.fa.fa-heart
+                  | 825
+                span.fcomments
+                  i.fa.fa-comments
+                  | 6
+      .col-sm-4.sidebar
+        .widget.mars-subscribox-widget
+          h4.widget-title Social Subscribox
+          .social-counter-item
+            a(target='_top', href='#')
+              i.fa.fa-facebook
+              span.counter 129
+              span.counter-text Fans
+          .social-counter-item
+            a(target='_top', href='#')
+              i.fa.fa-twitter
+              span.counter 126
+              span.counter-text Followers
+          .social-counter-item
+            a(target='_top', href='#')
+              i.fa.fa-google-plus
+              span.counter 235
+              span.counter-text Fans
+          .social-counter-item.last.subscribe
+            a(href='#', data-toggle='modal', data-target='#subscrib-modal')
+              i.fa.fa-rss
+              span.counter 2
+              span.counter-text Subscribers
+          // Modal
+          #subscrib-modal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='subscrib-modal-label', aria-hidden='true')
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                  h4#subscrib-modal-label.modal-title Subscribe
+                .modal-body
+                  form#mars-subscribe-form(method='post', role='form', action='', name='mars-subscribe-form')
+                    .form-group.name
+                      label(for='name') Your Name
+                      input#name.form-control(type='text')
+                    .form-group.email
+                      label(for='email') Your Email Address
+                      input#email.form-control(type='email')
+                    .checkbox
+                      label
+                        input#agree(name='agree', type='checkbox')
+                        a(href='http://videotube.marstheme.com/video/wonderfull-chill-out-music-love/') User Agreement & Privacy Policy
+                    input#mars_subscrib(type='hidden', name='mars_subscrib', value='992bf4a282')
+                    input(type='hidden', name='_wp_http_referer', value='/?s=music')
+                    button.btn.btn-primary(type='submit') Register
+                    input(type='hidden', name='submit-label', value='Register')
+                    button.btn.btn-default(type='button', data-dismiss='modal') Close
+                    input#referer(type='hidden', name='referer', value='1903')
+        .widget.mars-posts-sidebar-widget
+          h4.widget-title Latest Posts
+          #post-right-mars-posts-sidebar-widget-3-2751.item.post-2751.post.type-post.status-publish.format-standard.has-post-thumbnail.hentry.category-food.tag-decorative.tag-pumpkins
+            a(title='Decorative Pumpkins: Which one?', href='http://videotube.marstheme.com/decorative-pumpkins-which-one/')
+              img.img-responsive.wp-post-image(width='360', height='240', src='http://videotube.marstheme.com/wp-content/uploads/2015/02/picjumbo.com_HNCK2326-360x240.jpg', alt='picjumbo.com_HNCK2326')
+            .post-header
+              h3
+                a(title='Decorative Pumpkins: Which one?', href='http://videotube.marstheme.com/decorative-pumpkins-which-one/') Decorative Pumpkins: Which one?
+              span.post-meta
+                i.fa.fa-clock-o
+                |  February 12 ,2015
+          #post-right-mars-posts-sidebar-widget-3-2748.item.post-2748.post.type-post.status-publish.format-standard.has-post-thumbnail.hentry.category-food.tag-lake.tag-little-kid.tag-usa
+            a(title='Little Kid in Lake in the USA', href='http://videotube.marstheme.com/little-kid-lake-usa/')
+              img.img-responsive.wp-post-image(width='360', height='240', src='http://videotube.marstheme.com/wp-content/uploads/2015/02/picjumbo-360x240.png', alt='picjumbo')
+            .post-header
+              h3
+                a(title='Little Kid in Lake in the USA', href='http://videotube.marstheme.com/little-kid-lake-usa/') Little Kid in Lake in the USA
+              span.post-meta
+                i.fa.fa-clock-o
+                |  February 12 ,2015
+          #post-right-mars-posts-sidebar-widget-3-2370.item.post-2370.post.type-post.status-publish.format-standard.has-post-thumbnail.hentry.category-food.tag-cranberries.tag-dancing.tag-party
+            a(title='Party At Home Dancing Cranberries', href='http://videotube.marstheme.com/party-at-home-dancing-cranberries/')
+              img.img-responsive.wp-post-image(width='360', height='240', src='http://videotube.marstheme.com/wp-content/uploads/2014/08/picjumbo.com_HNCK2125-360x240.jpg', alt='picjumbo.com_HNCK2125')
+            .post-header
+              h3
+                a(title='Party At Home Dancing Cranberries', href='http://videotube.marstheme.com/party-at-home-dancing-cranberries/') Party At Home Dancing Cranberries
+              span.post-meta
+                i.fa.fa-clock-o
+                |  August 21 ,2014
+        .widget.mars-videos-sidebar-widget
+          h4.widget-title Latest Videos 2 Cols
+          .row
+            .col-xs-6.item.responsive-height.mars-videos-sidebar-widget-3-2508(style='height: 159px;')
+              .item-img
+                a(title='Awesome Film Perfomance', href='http://videotube.marstheme.com/video/awesome-film-perfomance/')
+                  img.img-responsive.wp-post-image(width='165', height='108', src='http://videotube.marstheme.com/wp-content/uploads/2014/09/ZLSw0SXxThSrkXRIiCdT_DSC_0345-165x108.jpg', alt='ZLSw0SXxThSrkXRIiCdT_DSC_0345')
+                a(href='http://videotube.marstheme.com/video/awesome-film-perfomance/')
+                  .img-hover
+              h3
+                a(title='Awesome Film Perfomance', href='http://videotube.marstheme.com/video/awesome-film-perfomance/') Awesome Film Perfomance
+              .meta
+                span.date 11 months ago
+                span.views
+                  i.fa.fa-eye
+                  | 3940
+                span.heart
+                  i.fa.fa-heart
+                  | 1003
+                span.fcomments
+                  i.fa.fa-comments
+                  | 8
+            .col-xs-6.item.responsive-height.mars-videos-sidebar-widget-3-2360(style='height: 159px;')
+              .item-img
+                a(title='Best TRANCE music 2014', href='http://videotube.marstheme.com/video/best-trance-music-2014/')
+                  img.img-responsive.wp-post-image(width='165', height='108', src='http://videotube.marstheme.com/wp-content/uploads/2014/08/Future-Music-Festival-2015-165x108.jpg', alt='Future Music Festival 2015')
+                a(href='http://videotube.marstheme.com/video/best-trance-music-2014/')
+                  .img-hover
+              h3
+                a(title='Best TRANCE music 2014', href='http://videotube.marstheme.com/video/best-trance-music-2014/') Best TRANCE music 2014
+              .meta
+                span.date 1 year ago
+                span.views
+                  i.fa.fa-eye
+                  | 7356
+                span.heart
+                  i.fa.fa-heart
+                  | 825
+                span.fcomments
+                  i.fa.fa-comments
+                  | 6
+            .col-xs-6.item.responsive-height.mars-videos-sidebar-widget-3-2132(style='height: 184px;')
+              .item-img
+                a(title='HD Music Nexus Playlist', href='http://videotube.marstheme.com/video/hd-music-nexus-playlist/')
+                  img.img-responsive.wp-post-image(width='165', height='108', src='http://videotube.marstheme.com/wp-content/uploads/2014/07/Bassist-Steven-McDonald-165x108.jpg', alt='Bassist Steven McDonald')
+                a(href='http://videotube.marstheme.com/video/hd-music-nexus-playlist/')
+                  .img-hover
+              h3
+                a(title='HD Music Nexus Playlist', href='http://videotube.marstheme.com/video/hd-music-nexus-playlist/') HD Music Nexus Playlist
+              .meta
+                span.date 1 year ago
+                span.views
+                  i.fa.fa-eye
+                  | 5380
+                span.heart
+                  i.fa.fa-heart
+                  | 1280
+                span.fcomments
+                  i.fa.fa-comments
+                  | 0
+            .col-xs-6.item.responsive-height.mars-videos-sidebar-widget-3-1903(style='height: 184px;')
+              .item-img
+                a(title='Wonderfull Chill Out Music Love', href='http://videotube.marstheme.com/video/wonderfull-chill-out-music-love/')
+                  img.img-responsive.wp-post-image(width='165', height='108', src='http://videotube.marstheme.com/wp-content/uploads/2014/04/wonderfull-chill-out-music-love-165x108.jpg', alt='Wonderfull Chill Out Music Love')
+                a(href='http://videotube.marstheme.com/video/wonderfull-chill-out-music-love/')
+                  .img-hover
+              h3
+                a(title='Wonderfull Chill Out Music Love', href='http://videotube.marstheme.com/video/wonderfull-chill-out-music-love/') Wonderfull Chill Out Music Love
+              .meta
+                span.date 1 year ago
+                span.views
+                  i.fa.fa-eye
+                  | 6905
+                span.heart
+                  i.fa.fa-heart
+                  | 426
+                span.fcomments
+                  i.fa.fa-comments
+                  | 2
+        .widget.mars-videos-sidebar-widget
+          h4.widget-title Latest Videos 1 Col
+          .item.mars-videos-sidebar-widget-4-2508
+            .item-img
+              a(title='Awesome Film Perfomance', href='http://videotube.marstheme.com/video/awesome-film-perfomance/')
+                img.img-responsive.wp-post-image(width='360', height='240', src='http://videotube.marstheme.com/wp-content/uploads/2014/09/ZLSw0SXxThSrkXRIiCdT_DSC_0345-360x240.jpg', alt='ZLSw0SXxThSrkXRIiCdT_DSC_0345')
+              a(href='http://videotube.marstheme.com/video/awesome-film-perfomance/')
+                .img-hover
+            h3
+              a(title='Awesome Film Perfomance', href='http://videotube.marstheme.com/video/awesome-film-perfomance/') Awesome Film Perfomance
+            .meta
+              span.date 11 months ago
+              span.views
+                i.fa.fa-eye
+                | 3940
+              span.heart
+                i.fa.fa-heart
+                | 1003
+              span.fcomments
+                i.fa.fa-comments
+                | 8
+          .item.mars-videos-sidebar-widget-4-2360
+            .item-img
+              a(title='Best TRANCE music 2014', href='http://videotube.marstheme.com/video/best-trance-music-2014/')
+                img.img-responsive.wp-post-image(width='360', height='240', src='http://videotube.marstheme.com/wp-content/uploads/2014/08/Future-Music-Festival-2015-360x240.jpg', alt='Future Music Festival 2015')
+              a(href='http://videotube.marstheme.com/video/best-trance-music-2014/')
+                .img-hover
+            h3
+              a(title='Best TRANCE music 2014', href='http://videotube.marstheme.com/video/best-trance-music-2014/') Best TRANCE music 2014
+            .meta
+              span.date 1 year ago
+              span.views
+                i.fa.fa-eye
+                | 7356
+              span.heart
+                i.fa.fa-heart
+                | 825
+              span.fcomments
+                i.fa.fa-comments
+                | 6
+  //- ul#list
+  //-   .videos
+  //-     if vids
+  //-       each vid in vids
+  //-         //- a.video(href="/#{loc.citySlug}/#{vid.slug}/#{vid.eid}", horizontal, layout)
+  //-         li
+  //-           a.video.card(href="/#{vid.snippet.slug}/#{vid.id.videoId}", horizontal, layout)
+  //-             .left
+  //-               img(src="#{vid.snippet.thumbnails.high.url}", alt="#{vid.title}")
+  //-             .right(flex three)
+  //-               h2.truncate.two #{vid.snippet.title}
+  //-               .tag-list
+  //-                 each tag in vid.tags
+  //-                   span.tag(class="#{tag}") #{tag}
 
-                //- .date
-                //-   //- core-icon(icon="today")
-                //-   core-icon(icon="query-builder")
-                //-   span.date #{moment(vid.start_time).calendar()}
-                //-   span #{moment(vid.start_time).format('LT')}
+  //-               .date
+  //-                 //- core-icon(icon="today")
+  //-                 core-icon(icon="query-builder")
+  //-                 span.date #{moment(vid.start_time).calendar()}
+  //-                 span #{moment(vid.start_time).format('LT')}
 
-                //- .location.truncate
-                //-   core-icon(icon="room")
-                //-   span #{vid.location}
+  //-               .location.truncate
+  //-                 core-icon(icon="room")
+  //-                 span #{vid.location}
 
-    //- template
-    //-   paper-tabs(selected='{{selectedPage}}')
-    //-     paper-tab
-    //-       core-icon(icon="today")
-    //-       | Feed
-    //-     paper-tab
-    //-       core-icon(icon="explore")
-    //-       | Explore
-    //-     //- paper-tab
-    //-     //-   core-icon(icon="favorite")
-    //-     //-   | Favorite
-    //-     //- paper-tab
-    //-     //-   core-icon(icon="star")
-    //-     //-   | Start
-    //-     //- paper-tab
-    //-     //-   core-icon(icon="visibility")
-    //-     //-   | Watching
-    //-     paper-tab
-    //-       core-icon(icon="perm-identity")
-    //-       | Me
+  //-   template
+  //-     paper-tabs(selected='{{selectedPage}}')
+  //-       paper-tab
+  //-         core-icon(icon="today")
+  //-         | Feed
+  //-       paper-tab
+  //-         core-icon(icon="explore")
+  //-         | Explore
+  //-       //- paper-tab
+  //-       //-   core-icon(icon="favorite")
+  //-       //-   | Favorite
+  //-       //- paper-tab
+  //-       //-   core-icon(icon="star")
+  //-       //-   | Start
+  //-       //- paper-tab
+  //-       //-   core-icon(icon="visibility")
+  //-       //-   | Watching
+  //-       paper-tab
+  //-         core-icon(icon="perm-identity")
+  //-         | Me
 
-    //-   swipe-pages(selected='{{selectedPage}}')
-    //-     swipe-page(layout, vertical, center, center-justified)
-    //-       .videos
-    //-         if vids
-    //-           each vid in vids
-    //-             //- a.video(href="/#{loc.citySlug}/#{vid.slug}/#{vid.eid}", horizontal, layout)
-    //-             a.video(href="/asd", horizontal, layout)
-    //-               .left
-    //-                 img(src="#{vid.pic}")
-    //-               .right(flex three)
-    //-                 h3.truncate.two #{vid.title}
-    //-                 //- .tag-list
-    //-                 //-   each tag in vid.tags
-    //-                 //-     span.tag(class="#{tag}") #{tag}
+  //-     swipe-pages(selected='{{selectedPage}}')
+  //-       swipe-page(layout, vertical, center, center-justified)
+  //-         .videos
+  //-           if vids
+  //-             each vid in vids
+  //-               //- a.video(href="/#{loc.citySlug}/#{vid.slug}/#{vid.eid}", horizontal, layout)
+  //-               a.video(href="/asd", horizontal, layout)
+  //-                 .left
+  //-                   img(src="#{vid.pic}")
+  //-                 .right(flex three)
+  //-                   h3.truncate.two #{vid.title}
+  //-                   //- .tag-list
+  //-                   //-   each tag in vid.tags
+  //-                   //-     span.tag(class="#{tag}") #{tag}
 
-    //-                 //- .date
-    //-                 //-   //- core-icon(icon="today")
-    //-                 //-   core-icon(icon="query-builder")
-    //-                 //-   span.date #{moment(vid.start_time).calendar()}
-    //-                 //-   span #{moment(vid.start_time).format('LT')}
+  //-                   //- .date
+  //-                   //-   //- core-icon(icon="today")
+  //-                   //-   core-icon(icon="query-builder")
+  //-                   //-   span.date #{moment(vid.start_time).calendar()}
+  //-                   //-   span #{moment(vid.start_time).format('LT')}
 
-    //-                 //- .location.truncate
-    //-                 //-   core-icon(icon="room")
-    //-                 //-   span #{vid.location}
+  //-                   //- .location.truncate
+  //-                   //-   core-icon(icon="room")
+  //-                   //-   span #{vid.location}

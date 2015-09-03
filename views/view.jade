@@ -1,8 +1,397 @@
 extends layout
 
 block content
-  #list
-    .videos
-      if vid
-        iframe(width="420", height="315", src="http://www.youtube.com/embed/#{vid.id}")
-        p.description= vid.snippet.description
+  // /#navigation-wrapper
+  .video-wrapper
+    .container
+      .video-info.large
+        h1 #{vid.snippet.title}
+        span.views
+          i.fa.fa-eye
+          | 3189
+        a#273.likes-dislikes(href='javascript:void(0)', action='like')
+          span.likes
+            i.fa.fa-thumbs-up
+            label.likevideo273 238
+      .player.player-large.embed-responsive.embed-responsive-16by9
+        iframe(width='200', height='113', src='https://www.youtube.com/embed/#{vid.id}?feature=oembed&autoplay=1&modestbranding=1&rel=0&iv_load_policy=3&showinfo=0', frameborder='0', allowfullscreen='')
+      #lightoff
+  .container
+    .row
+      .col-sm-8.main-content
+        .row.video-options
+          .col-sm-3.col-xs-6.box-comment
+            a.option.comments-scrolling(href='javascript:void(0)')
+              i.fa.fa-comments
+              span.option-text Comments
+          .col-sm-3.col-xs-6.box-share
+            a#off.option.share-button(href='javascript:void(0)')
+              i.fa.fa-share
+              span.option-text Share
+          .col-sm-3.col-xs-6.box-like
+            a#273.option.likes-dislikes(href='javascript:void(0)', action='like', video='273')
+              i.fa.fa-thumbs-up
+              span.option-text.likes-dislikes
+                label.likevideo273 238
+          .col-sm-3.col-xs-6.box-turn-off-light
+            // LIGHT SWITCH
+            a.option.switch-button(href='javascript:void(0)')
+              i.fa.fa-lightbulb-o
+              span.option-text Turn off Light
+        // IF SHARE BUTTON IS CLICKED SHOW THIS
+        .row.social-share-buttons
+          .col-xs-12
+            a(target='_blank', href='https://www.facebook.com/sharer/sharer.php?u=http://famosas.tv/#{vid.snippet.slug}/#{vid.id}')
+              img(src='http://videotube.marstheme.com/wp-content/themes/videotube/img/facebook.png', alt='')
+            a(target='_blank', href='https://twitter.com/home?status=http://famosas.tv/#{vid.snippet.slug}/#{vid.id}')
+              img(src='http://videotube.marstheme.com/wp-content/themes/videotube/img/twitter.png', alt='')
+            a(target='_blank', href='https://plus.google.com/share?url=http://famosas.tv/#{vid.snippet.slug}/#{vid.id}')
+              img(src='http://videotube.marstheme.com/wp-content/themes/videotube/img/googleplus.png', alt='')
+            a(target='_blank', href='https://pinterest.com/pin/create/button/?url=http://famosas.tv/#{vid.snippet.slug}/#{vid.id}&media=http://videotube.marstheme.com/wp-content/uploads/2014/03/vlog2.jpg&description=Aenean feugiat in ante et blandit. Vestibulum posuere molestie risus, ac interdum magna porta non. Pellentesque rutrum fringilla elementum. Curabitur tincidunt porta lorem vitae accumsan. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec ac euismod turpis.')
+              img(src='http://videotube.marstheme.com/wp-content/themes/videotube/img/pinterest.png', alt='')
+            a(target='_blank', href='http://www.reddit.com/submit?url')
+              img(src='http://videotube.marstheme.com/wp-content/themes/videotube/img/reddit.png', alt='')
+            a(target='_blank', href='https://www.linkedin.com/shareArticle?mini=true&url=http://famosas.tv/#{vid.snippet.slug}/#{vid.id}&title=Jenna Marbles&summary=Aenean feugiat in ante et blandit. Vestibulum posuere molestie risus, ac interdum magna porta non. Pellentesque rutrum fringilla elementum. Curabitur tincidunt porta lorem vitae accumsan. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec ac euismod turpis.&source=http://videotube.marstheme.com')
+              img(src='http://videotube.marstheme.com/wp-content/themes/videotube/img/linkedin.png', alt='')
+            a(target='_blank', href='http://www.odnoklassniki.ru/dk?st.cmd=addShare&st._surl=http://famosas.tv/#{vid.snippet.slug}/#{vid.id}&title=Jenna Marbles')
+              img(src='http://videotube.marstheme.com/wp-content/themes/videotube/img/odnok.png', alt='')
+            a(target='_blank', href='http://vkontakte.ru/share.php?url=http://famosas.tv/#{vid.snippet.slug}/#{vid.id}')
+              img(src='http://videotube.marstheme.com/wp-content/themes/videotube/img/vkontakte.png', alt='')
+            a(href='mailto:?Subject=Jenna Marbles&Body=I saw this and thought of you! http://famosas.tv/#{vid.snippet.slug}/#{vid.id}')
+              img(src='http://videotube.marstheme.com/wp-content/themes/videotube/img/email.png', alt='')
+        .video-details
+          span.date
+            | Published on March 19 ,2014 by
+            a(href='http://videotube.marstheme.com/author/admin/') admin
+          .post-entry
+            p
+              | #{vid.snippet.description}
+          span.meta
+            span.meta-info Category
+            a(href='http://videotube.marstheme.com/categories/vlogs/', rel='tag') Vlogs
+          span.meta
+            span.meta-info Tag
+            a(href='http://videotube.marstheme.com/video_tag/featuredvid/', rel='tag') featuredvid
+            a(href='http://videotube.marstheme.com/video_tag/personal/', rel='tag') personal
+            a(href='http://videotube.marstheme.com/video_tag/video/', rel='tag') video
+            a(href='http://videotube.marstheme.com/video_tag/vlog/', rel='tag') vlog
+        #carousel-latest-mars-relatedvideo-widgets-2.carousel.carousel-mars-relatedvideo-widgets-2.slide.video-section(data-ride='carousel')
+          .section-header
+            h3 Related Videos
+            ol.carousel-indicators.section-nav
+              li.bullet.active(data-target='#carousel-latest-mars-relatedvideo-widgets-2', data-slide-to='0')
+              li.bullet(data-target='#carousel-latest-mars-relatedvideo-widgets-2', data-slide-to='1')
+          // end section header
+          .latest-wrapper
+            .row
+              .carousel-inner
+                .item.active
+                  .col-sm-4.col-xs-6.item.responsive-height.mars-relatedvideo-widgets-2-275
+                    .item-img
+                      a(href='http://videotube.marstheme.com/video/monday-vlog-mlog/')
+                        img.img-responsive.wp-post-image(width='230', height='150', src='http://videotube.marstheme.com/wp-content/uploads/2014/03/vlog3-230x150.jpg', alt='vlog3')
+                      a(href='http://videotube.marstheme.com/video/monday-vlog-mlog/')
+                        .img-hover
+                    h3
+                      a(title='Monday Vlog (Mlog)', href='http://videotube.marstheme.com/video/monday-vlog-mlog/') Monday Vlog (Mlog)
+                    .meta
+                      span.date 1 year ago
+                      span.views
+                        i.fa.fa-eye
+                        | 3437
+                      span.heart
+                        i.fa.fa-heart
+                        | 465
+                      span.fcomments
+                        i.fa.fa-comments
+                        | 0
+                  .col-sm-4.col-xs-6.item.responsive-height.mars-relatedvideo-widgets-2-271
+                    .item-img
+                      a(href='http://videotube.marstheme.com/video/vlog-update-israel/')
+                        img.img-responsive.wp-post-image(width='230', height='150', src='http://videotube.marstheme.com/wp-content/uploads/2014/03/vlog-230x150.jpg', alt='vlog')
+                      a(href='http://videotube.marstheme.com/video/vlog-update-israel/')
+                        .img-hover
+                    h3
+                      a(title='Vlog Update: Israel', href='http://videotube.marstheme.com/video/vlog-update-israel/') Vlog Update: Israel
+                    .meta
+                      span.date 1 year ago
+                      span.views
+                        i.fa.fa-eye
+                        | 2391
+                      span.heart
+                        i.fa.fa-heart
+                        | 108
+                      span.fcomments
+                        i.fa.fa-comments
+                        | 0
+                  .col-sm-4.col-xs-6.item.responsive-height.mars-relatedvideo-widgets-2-269
+                    .item-img
+                      a(href='http://videotube.marstheme.com/video/travel-vlog-langtang/')
+                        img.img-responsive.wp-post-image(width='230', height='150', src='http://videotube.marstheme.com/wp-content/uploads/2014/03/vlog4-230x150.jpg', alt='vlog4')
+                      a(href='http://videotube.marstheme.com/video/travel-vlog-langtang/')
+                        .img-hover
+                    h3
+                      a(title='Travel Vlog: Langtang Valley', href='http://videotube.marstheme.com/video/travel-vlog-langtang/') Travel Vlog: Langtang Valley
+                    .meta
+                      span.date 1 year ago
+                      span.views
+                        i.fa.fa-eye
+                        | 1839
+                      span.heart
+                        i.fa.fa-heart
+                        | 118
+                      span.fcomments
+                        i.fa.fa-comments
+                        | 0
+                .item
+                  .col-sm-4.col-xs-6.item.responsive-height.mars-relatedvideo-widgets-2-267
+                    .item-img
+                      a(href='http://videotube.marstheme.com/video/lake-kelcema-hiking-vlog/')
+                        img.img-responsive.wp-post-image(width='230', height='150', src='http://videotube.marstheme.com/wp-content/uploads/2014/03/spocom-2012-vlog-230x150.jpg', alt='Spocom 2012 Vlog')
+                      a(href='http://videotube.marstheme.com/video/lake-kelcema-hiking-vlog/')
+                        .img-hover
+                    h3
+                      a(title='Spocom 2012 Vlog', href='http://videotube.marstheme.com/video/lake-kelcema-hiking-vlog/') Spocom 2012 Vlog
+                    .meta
+                      span.date 1 year ago
+                      span.views
+                        i.fa.fa-eye
+                        | 1650
+                      span.heart
+                        i.fa.fa-heart
+                        | 18
+                      span.fcomments
+                        i.fa.fa-comments
+                        | 0
+        // /#carousel
+        .widget.widget_text
+          .textwidget
+            img(src='http://placehold.it/750x100')
+        .comments
+          .section-header
+            h3
+          ul.list-unstyled.comment-list
+          #respond.comment-respond
+            h3#reply-title.comment-reply-title
+              | Add your comment
+              small
+                a#cancel-comment-reply-link(rel='nofollow', href='/video/jenna-marbles/#respond', style='display:none;') Cancel Reply
+            form#commentform.comment-form(action='http://videotube.marstheme.com/wp-comments-post.php', method='post')
+              p.comment-notes Your email address will not be published.
+              .form-group
+                label(for='author') Your Name
+                input#author.form-control(type='text', name='author', placeholder='Enter name', value='')
+              .form-group
+                label(for='email') Your Email
+                input#email.form-control(type='text', name='email', placeholder='Enter Email', value='')
+              .form-group
+                label(for='url') Website
+                input#url.form-control(type='text', name='url', placeholder='Enter Website', value='')
+              .form-group
+                label(for='comment') Comment
+                textarea#comment.form-control(aria-required='true', name='comment', rows='6')
+              p.form-submit
+                input#submit.btn-1(name='submit', type='submit', value='Submit')
+                input#comment_post_ID(type='hidden', name='comment_post_ID', value='273')
+                input#comment_parent(type='hidden', name='comment_parent', value='0')
+              p(style='display: none;')
+                input#akismet_comment_nonce(type='hidden', name='akismet_comment_nonce', value='9b493cc508')
+              p(style='display: none;')
+                input#ak_js(type='hidden', name='ak_js', value='101')
+          // #respond
+      .col-sm-4.sidebar
+        .widget.mars-subscribox-widget
+          h4.widget-title Social Subscribox
+          .social-counter-item
+            a(target='_blank', href='#')
+              i.fa.fa-facebook
+              span.counter 129
+              span.counter-text Fans
+          .social-counter-item
+            a(target='_blank', href='#')
+              i.fa.fa-twitter
+              span.counter 126
+              span.counter-text Followers
+          .social-counter-item
+            a(target='_blank', href='#')
+              i.fa.fa-google-plus
+              span.counter 235
+              span.counter-text Fans
+          .social-counter-item.last.subscribe
+            a(href='#', data-toggle='modal', data-target='#subscrib-modal')
+              i.fa.fa-rss
+              span.counter 2
+              span.counter-text Subscribers
+          // Modal
+          #subscrib-modal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='subscrib-modal-label', aria-hidden='true')
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                  h4#subscrib-modal-label.modal-title Subscribe
+                .modal-body
+                  form#mars-subscribe-form(method='post', role='form', action='', name='mars-subscribe-form')
+                    .form-group.name
+                      label(for='name') Your Name
+                      input#name.form-control(type='text')
+                    .form-group.email
+                      label(for='email') Your Email Address
+                      input#email.form-control(type='email')
+                    .checkbox
+                      label
+                        input#agree(name='agree', type='checkbox')
+                        a(href='http://famosas.tv/#{vid.snippet.slug}/#{vid.id}') User Agreement & Privacy Policy
+                    input#mars_subscrib(type='hidden', name='mars_subscrib', value='4cf57ae8c3')
+                    input(type='hidden', name='_wp_http_referer', value='/video/jenna-marbles/')
+                    button.btn.btn-primary(type='submit') Register
+                    input(type='hidden', name='submit-label', value='Register')
+                    button.btn.btn-default(type='button', data-dismiss='modal') Close
+                    input#referer(type='hidden', name='referer', value='273')
+        .widget.mars-posts-sidebar-widget
+          h4.widget-title Latest Posts
+          #post-right-mars-posts-sidebar-widget-3-2751.item.post-2751.post.type-post.status-publish.format-standard.has-post-thumbnail.hentry.category-food.tag-decorative.tag-pumpkins
+            a(title='Decorative Pumpkins: Which one?', href='http://videotube.marstheme.com/decorative-pumpkins-which-one/')
+              img.img-responsive.wp-post-image(width='360', height='240', src='http://videotube.marstheme.com/wp-content/uploads/2015/02/picjumbo.com_HNCK2326-360x240.jpg', alt='picjumbo.com_HNCK2326')
+            .post-header
+              h3
+                a(title='Decorative Pumpkins: Which one?', href='http://videotube.marstheme.com/decorative-pumpkins-which-one/') Decorative Pumpkins: Which one?
+              span.post-meta
+                i.fa.fa-clock-o
+                |  February 12 ,2015
+          #post-right-mars-posts-sidebar-widget-3-2748.item.post-2748.post.type-post.status-publish.format-standard.has-post-thumbnail.hentry.category-food.tag-lake.tag-little-kid.tag-usa
+            a(title='Little Kid in Lake in the USA', href='http://videotube.marstheme.com/little-kid-lake-usa/')
+              img.img-responsive.wp-post-image(width='360', height='240', src='http://videotube.marstheme.com/wp-content/uploads/2015/02/picjumbo-360x240.png', alt='picjumbo')
+            .post-header
+              h3
+                a(title='Little Kid in Lake in the USA', href='http://videotube.marstheme.com/little-kid-lake-usa/') Little Kid in Lake in the USA
+              span.post-meta
+                i.fa.fa-clock-o
+                |  February 12 ,2015
+          #post-right-mars-posts-sidebar-widget-3-2370.item.post-2370.post.type-post.status-publish.format-standard.has-post-thumbnail.hentry.category-food.tag-cranberries.tag-dancing.tag-party
+            a(title='Party At Home Dancing Cranberries', href='http://videotube.marstheme.com/party-at-home-dancing-cranberries/')
+              img.img-responsive.wp-post-image(width='360', height='240', src='http://videotube.marstheme.com/wp-content/uploads/2014/08/picjumbo.com_HNCK2125-360x240.jpg', alt='picjumbo.com_HNCK2125')
+            .post-header
+              h3
+                a(title='Party At Home Dancing Cranberries', href='http://videotube.marstheme.com/party-at-home-dancing-cranberries/') Party At Home Dancing Cranberries
+              span.post-meta
+                i.fa.fa-clock-o
+                |  August 21 ,2014
+        .widget.mars-videos-sidebar-widget
+          h4.widget-title Latest Videos 2 Cols
+          .row
+            .col-xs-6.item.responsive-height.mars-videos-sidebar-widget-3-2508
+              .item-img
+                a(title='Awesome Film Perfomance', href='http://videotube.marstheme.com/video/awesome-film-perfomance/')
+                  img.img-responsive.wp-post-image(width='165', height='108', src='http://videotube.marstheme.com/wp-content/uploads/2014/09/ZLSw0SXxThSrkXRIiCdT_DSC_0345-165x108.jpg', alt='ZLSw0SXxThSrkXRIiCdT_DSC_0345')
+                a(href='http://videotube.marstheme.com/video/awesome-film-perfomance/')
+                  .img-hover
+              h3
+                a(title='Awesome Film Perfomance', href='http://videotube.marstheme.com/video/awesome-film-perfomance/') Awesome Film Perfomance
+              .meta
+                span.date 11 months ago
+                span.views
+                  i.fa.fa-eye
+                  | 3934
+                span.heart
+                  i.fa.fa-heart
+                  | 1002
+                span.fcomments
+                  i.fa.fa-comments
+                  | 8
+            .col-xs-6.item.responsive-height.mars-videos-sidebar-widget-3-2360
+              .item-img
+                a(title='Best TRANCE music 2014', href='http://videotube.marstheme.com/video/best-trance-music-2014/')
+                  img.img-responsive.wp-post-image(width='165', height='108', src='http://videotube.marstheme.com/wp-content/uploads/2014/08/Future-Music-Festival-2015-165x108.jpg', alt='Future Music Festival 2015')
+                a(href='http://videotube.marstheme.com/video/best-trance-music-2014/')
+                  .img-hover
+              h3
+                a(title='Best TRANCE music 2014', href='http://videotube.marstheme.com/video/best-trance-music-2014/') Best TRANCE music 2014
+              .meta
+                span.date 1 year ago
+                span.views
+                  i.fa.fa-eye
+                  | 7348
+                span.heart
+                  i.fa.fa-heart
+                  | 824
+                span.fcomments
+                  i.fa.fa-comments
+                  | 6
+            .col-xs-6.item.responsive-height.mars-videos-sidebar-widget-3-2132
+              .item-img
+                a(title='HD Music Nexus Playlist', href='http://videotube.marstheme.com/video/hd-music-nexus-playlist/')
+                  img.img-responsive.wp-post-image(width='165', height='108', src='http://videotube.marstheme.com/wp-content/uploads/2014/07/Bassist-Steven-McDonald-165x108.jpg', alt='Bassist Steven McDonald')
+                a(href='http://videotube.marstheme.com/video/hd-music-nexus-playlist/')
+                  .img-hover
+              h3
+                a(title='HD Music Nexus Playlist', href='http://videotube.marstheme.com/video/hd-music-nexus-playlist/') HD Music Nexus Playlist
+              .meta
+                span.date 1 year ago
+                span.views
+                  i.fa.fa-eye
+                  | 5376
+                span.heart
+                  i.fa.fa-heart
+                  | 1280
+                span.fcomments
+                  i.fa.fa-comments
+                  | 0
+            .col-xs-6.item.responsive-height.mars-videos-sidebar-widget-3-1903
+              .item-img
+                a(title='Wonderfull Chill Out Music Love', href='http://videotube.marstheme.com/video/wonderfull-chill-out-music-love/')
+                  img.img-responsive.wp-post-image(width='165', height='108', src='http://videotube.marstheme.com/wp-content/uploads/2014/04/wonderfull-chill-out-music-love-165x108.jpg', alt='Wonderfull Chill Out Music Love')
+                a(href='http://videotube.marstheme.com/video/wonderfull-chill-out-music-love/')
+                  .img-hover
+              h3
+                a(title='Wonderfull Chill Out Music Love', href='http://videotube.marstheme.com/video/wonderfull-chill-out-music-love/') Wonderfull Chill Out Music Love
+              .meta
+                span.date 1 year ago
+                span.views
+                  i.fa.fa-eye
+                  | 6901
+                span.heart
+                  i.fa.fa-heart
+                  | 426
+                span.fcomments
+                  i.fa.fa-comments
+                  | 2
+        .widget.mars-videos-sidebar-widget
+          h4.widget-title Latest Videos 1 Col
+          .item.mars-videos-sidebar-widget-4-2508
+            .item-img
+              a(title='Awesome Film Perfomance', href='http://videotube.marstheme.com/video/awesome-film-perfomance/')
+                img.img-responsive.wp-post-image(width='360', height='240', src='http://videotube.marstheme.com/wp-content/uploads/2014/09/ZLSw0SXxThSrkXRIiCdT_DSC_0345-360x240.jpg', alt='ZLSw0SXxThSrkXRIiCdT_DSC_0345')
+              a(href='http://videotube.marstheme.com/video/awesome-film-perfomance/')
+                .img-hover
+            h3
+              a(title='Awesome Film Perfomance', href='http://videotube.marstheme.com/video/awesome-film-perfomance/') Awesome Film Perfomance
+            .meta
+              span.date 11 months ago
+              span.views
+                i.fa.fa-eye
+                | 3934
+              span.heart
+                i.fa.fa-heart
+                | 1002
+              span.fcomments
+                i.fa.fa-comments
+                | 8
+          .item.mars-videos-sidebar-widget-4-2360
+            .item-img
+              a(title='Best TRANCE music 2014', href='http://videotube.marstheme.com/video/best-trance-music-2014/')
+                img.img-responsive.wp-post-image(width='360', height='240', src='http://videotube.marstheme.com/wp-content/uploads/2014/08/Future-Music-Festival-2015-360x240.jpg', alt='Future Music Festival 2015')
+              a(href='http://videotube.marstheme.com/video/best-trance-music-2014/')
+                .img-hover
+            h3
+              a(title='Best TRANCE music 2014', href='http://videotube.marstheme.com/video/best-trance-music-2014/') Best TRANCE music 2014
+            .meta
+              span.date 1 year ago
+              span.views
+                i.fa.fa-eye
+                | 7348
+              span.heart
+                i.fa.fa-heart
+                | 824
+              span.fcomments
+                i.fa.fa-comments
+                | 6
