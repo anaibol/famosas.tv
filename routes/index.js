@@ -11,6 +11,8 @@ youtube.setKey('AIzaSyCXNnoeEVyQq39OBD0SF3KOxU3uuG54doU');
 var db = require('monk')('localhost/famosas');
 var Keywords = db.get('keywords');
 
+var numVideos = 20;
+
 function slug(str) {
   str = str.replace(/^\s+|\s+$/g, ''); // trim
   str = str.toLowerCase();
@@ -35,7 +37,7 @@ function replaceAll(str, target, replacement) {
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  youtube.search('famosas desnudas', 2, function(err, data){
+  youtube.search('famosas desnudas', numVideos, function(err, data){
     var videos = data.items;
 
     for (var i = videos.length - 1; i >= 0; i--) {
@@ -54,7 +56,7 @@ router.get('/:keyword', function(req, res) {
   } else {
     var searchTerm = replaceAll(req.params.keyword, '-', ' ');
 
-    youtube.search(searchTerm, 2, function(err, data){
+    youtube.search(searchTerm, numVideos, function(err, data){
       if (err) {
         return;
       }
