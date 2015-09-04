@@ -73,9 +73,9 @@ router.get('/:keyword', function(req, res) {
 
       var videos = data.items;
 
-      for (var i = videos.length - 1; i >= 0; i--) {
-        videos[i].snippet.slug = slug(videos[i].snippet.title);
-      }
+      videos.forEach(function(vid) {
+        vid.snippet.slug = slug(vid.snippet.title);
+      })
 
       res.render('list', {vids: videos, title: req.params.keyword});
     });
@@ -86,7 +86,7 @@ router.get('/:slug/:id', function(req, res) {
   youtube.getById(req.params.id, function(err, data) {
     var vid = data.items[0];
     vid.snippet.slug = slug(vid.snippet.title);
-    console.log(vid);
+
     youtube.related(req.params.id, 6, function(err, data) {
       if (err) {
         console.log(err);
@@ -95,7 +95,13 @@ router.get('/:slug/:id', function(req, res) {
 
       if (data) {
         var related = data.items;
+
+        related.forEach(function(vid) {
+          vid.snippet.slug = slug(vid.snippet.title);
+        })
+
         vid.related = related;
+
         res.render('view', {vid: vid, title: vid.snippet.title});
       }
     });
