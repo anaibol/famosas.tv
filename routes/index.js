@@ -64,20 +64,20 @@ router.get('/:keyword', function(req, res) {
     res.redirect(keywordSlug);
   } else {
     var searchTerm = replaceAll(req.params.keyword, '-', ' ');
-
     youtube.search(searchTerm, numVideos, function(err, data){
       if (err) {
         console.log(err);
         return;
       }
 
+      console.log(data);
       var videos = data.items;
 
       videos.forEach(function(vid) {
         vid.snippet.slug = slug(vid.snippet.title);
       })
 
-      res.render('list', {vids: videos, title: req.params.keyword});
+      res.render('list', {vids: videos, title: req.params.keyword, meta: data.pageInfo});
     });
   }
 });
