@@ -70,7 +70,6 @@ router.get('/:keyword', function(req, res) {
         return;
       }
 
-      console.log(data);
       var videos = data.items;
 
       videos.forEach(function(vid) {
