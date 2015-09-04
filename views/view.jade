@@ -71,8 +71,9 @@ block content
           //-   a(href='http://videotube.marstheme.com/categories/vlogs/', rel='tag') People & Blogs
           span.meta
             span.meta-info Tag
-              each tag in vid.snippet.tags
-                a(href='/#{tag}', rel='tag') #{tag}
+              if vid.snippet.tags
+                each tag in vid.snippet.tags
+                  a(href='/#{tag}', rel='tag') #{tag}
 
         #carousel-latest-mars-relatedvideo-widgets-2.carousel.carousel-mars-relatedvideo-widgets-2.slide.video-section(data-ride='carousel')
           .section-header
