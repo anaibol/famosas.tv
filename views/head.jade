@@ -6,7 +6,12 @@ head
 
 
   meta(http-equiv='Content-type', content='text/html;charset=UTF-8')
-  meta(name="keywords", content="Famosas desnudas, chicas desnudas, mujeres desnudas, chicas, mujeres, mujeres hermosas, chicas hermosas, hermosas")
+
+  if vid
+    if vid.snippet.tags.length
+      meta(name="keywords", content="#{vid.snippet.tags.join(',')}")
+
+  //- meta(name="keywords", content="Famosas desnudas, chicas desnudas, mujeres desnudas, chicas, mujeres, mujeres hermosas, chicas hermosas, hermosas")
 
   title= title
   //- meta(property='og:title', content=vid.title)

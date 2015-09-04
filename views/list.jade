@@ -20,11 +20,11 @@ block content
         .row.video-section.meta-maxwidth-230
           each vid in vids
             .col-sm-4.col-xs-6.item
-              a(title='Best TRANCE music 2014', href='/#{vid.snippet.slug}/#{vid.id.videoId}')
+              a(title='#{vid.snippet.title}', href='/#{vid.snippet.slug}/#{vid.id.videoId}')
                 img.img-responsive.wp-post-image(width='230', height='150', src='#{vid.snippet.thumbnails.high.url}', alt='#{vid.snippet.title}')
               h3
                 a(title='#{vid.snippet.title}', href='/#{vid.snippet.slug}/#{vid.id.videoId}')
-                  #{vid.snippet.title}
+                  | #{vid.snippet.title}
               .meta
                 span.date 1 year ago
                 span.views

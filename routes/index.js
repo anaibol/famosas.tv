@@ -8,6 +8,10 @@ var youtube = new Youtube();
 
 youtube.setKey('AIzaSyCXNnoeEVyQq39OBD0SF3KOxU3uuG54doU');
 
+youtube.addParam('safeSearch', 'none');
+youtube.addParam('type', 'video');
+youtube.addParam('videoEmbeddable', 'true');
+
 var db = require('monk')('localhost/famosas');
 var Keywords = db.get('keywords');
 
@@ -38,6 +42,11 @@ function replaceAll(str, target, replacement) {
 /* GET home page. */
 router.get('/', function(req, res) {
   youtube.search('famosas desnudas', numVideos, function(err, data){
+    if (err) {
+      console.log(err);
+      return;
+    }
+
     var videos = data.items;
 
     for (var i = videos.length - 1; i >= 0; i--) {
@@ -58,6 +67,7 @@ router.get('/:keyword', function(req, res) {
 
     youtube.search(searchTerm, numVideos, function(err, data){
       if (err) {
+        console.log(err);
         return;
       }
 
@@ -75,8 +85,20 @@ router.get('/:keyword', function(req, res) {
 router.get('/:slug/:id', function(req, res) {
   youtube.getById(req.params.id, function(err, data) {
     var vid = data.items[0];
+    vid.snippet.slug = slug(vid.snippet.title);
     console.log(vid);
-    res.render('view', {vid: vid, title: vid.snippet.title});
+    youtube.related(req.params.id, 6, function(err, data) {
+      if (err) {
+        console.log(err);
+        return;
+      }
+
+      if (data) {
+        var related = data.items;
+        vid.related = related;
+        res.render('view', {vid: vid, title: vid.snippet.title});
+      }
+    });
   });
 });
 

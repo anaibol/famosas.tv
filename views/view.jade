@@ -8,11 +8,11 @@ block content
         h1 #{vid.snippet.title}
         span.views
           i.fa.fa-eye
-          | 3189
+          | #{vid.statistics.viewCount}
         a#273.likes-dislikes(href='javascript:void(0)', action='like')
           span.likes
             i.fa.fa-thumbs-up
-            label.likevideo273 238
+            label.likevideo273 #{vid.statistics.likeCount}
       .player.player-large.embed-responsive.embed-responsive-16by9
         iframe(width='200', height='113', src='https://www.youtube.com/embed/#{vid.id}?feature=oembed&autoplay=1&modestbranding=1&rel=0&iv_load_policy=3&showinfo=0', frameborder='0', allowfullscreen='')
       #lightoff
@@ -32,7 +32,7 @@ block content
             a#273.option.likes-dislikes(href='javascript:void(0)', action='like', video='273')
               i.fa.fa-thumbs-up
               span.option-text.likes-dislikes
-                label.likevideo273 238
+                label.likevideo273 #{vid.statistics.likeCount}
           .col-sm-3.col-xs-6.box-turn-off-light
             // LIGHT SWITCH
             a.option.switch-button(href='javascript:void(0)')
@@ -66,15 +66,14 @@ block content
           .post-entry
             p
               | #{vid.snippet.description}
-          span.meta
-            span.meta-info Category
-            a(href='http://videotube.marstheme.com/categories/vlogs/', rel='tag') Vlogs
+          //- span.meta
+          //-   span.meta-info Category
+          //-   a(href='http://videotube.marstheme.com/categories/vlogs/', rel='tag') People & Blogs
           span.meta
             span.meta-info Tag
-            a(href='http://videotube.marstheme.com/video_tag/featuredvid/', rel='tag') featuredvid
-            a(href='http://videotube.marstheme.com/video_tag/personal/', rel='tag') personal
-            a(href='http://videotube.marstheme.com/video_tag/video/', rel='tag') video
-            a(href='http://videotube.marstheme.com/video_tag/vlog/', rel='tag') vlog
+              each tag in vid.snippet.tags
+                a(href='/#{tag}', rel='tag') #{tag}
+
         #carousel-latest-mars-relatedvideo-widgets-2.carousel.carousel-mars-relatedvideo-widgets-2.slide.video-section(data-ride='carousel')
           .section-header
             h3 Related Videos
@@ -86,63 +85,28 @@ block content
             .row
               .carousel-inner
                 .item.active
-                  .col-sm-4.col-xs-6.item.responsive-height.mars-relatedvideo-widgets-2-275
-                    .item-img
-                      a(href='http://videotube.marstheme.com/video/monday-vlog-mlog/')
-                        img.img-responsive.wp-post-image(width='230', height='150', src='http://videotube.marstheme.com/wp-content/uploads/2014/03/vlog3-230x150.jpg', alt='vlog3')
-                      a(href='http://videotube.marstheme.com/video/monday-vlog-mlog/')
-                        .img-hover
-                    h3
-                      a(title='Monday Vlog (Mlog)', href='http://videotube.marstheme.com/video/monday-vlog-mlog/') Monday Vlog (Mlog)
-                    .meta
-                      span.date 1 year ago
-                      span.views
-                        i.fa.fa-eye
-                        | 3437
-                      span.heart
-                        i.fa.fa-heart
-                        | 465
-                      span.fcomments
-                        i.fa.fa-comments
-                        | 0
-                  .col-sm-4.col-xs-6.item.responsive-height.mars-relatedvideo-widgets-2-271
-                    .item-img
-                      a(href='http://videotube.marstheme.com/video/vlog-update-israel/')
-                        img.img-responsive.wp-post-image(width='230', height='150', src='http://videotube.marstheme.com/wp-content/uploads/2014/03/vlog-230x150.jpg', alt='vlog')
-                      a(href='http://videotube.marstheme.com/video/vlog-update-israel/')
-                        .img-hover
-                    h3
-                      a(title='Vlog Update: Israel', href='http://videotube.marstheme.com/video/vlog-update-israel/') Vlog Update: Israel
-                    .meta
-                      span.date 1 year ago
-                      span.views
-                        i.fa.fa-eye
-                        | 2391
-                      span.heart
-                        i.fa.fa-heart
-                        | 108
-                      span.fcomments
-                        i.fa.fa-comments
-                        | 0
-                  .col-sm-4.col-xs-6.item.responsive-height.mars-relatedvideo-widgets-2-269
-                    .item-img
-                      a(href='http://videotube.marstheme.com/video/travel-vlog-langtang/')
-                        img.img-responsive.wp-post-image(width='230', height='150', src='http://videotube.marstheme.com/wp-content/uploads/2014/03/vlog4-230x150.jpg', alt='vlog4')
-                      a(href='http://videotube.marstheme.com/video/travel-vlog-langtang/')
-                        .img-hover
-                    h3
-                      a(title='Travel Vlog: Langtang Valley', href='http://videotube.marstheme.com/video/travel-vlog-langtang/') Travel Vlog: Langtang Valley
-                    .meta
-                      span.date 1 year ago
-                      span.views
-                        i.fa.fa-eye
-                        | 1839
-                      span.heart
-                        i.fa.fa-heart
-                        | 118
-                      span.fcomments
-                        i.fa.fa-comments
-                        | 0
+                  each rel in vid.related
+                    .col-sm-4.col-xs-6.item.responsive-height.mars-relatedvideo-widgets-2-275
+                      .item-img
+                        a(title='#{rel.snippet.title}', href='/#{rel.snippet.slug}/#{rel.id.videoId}')
+                          img.img-responsive.wp-post-image(width='230', height='150', src='#{rel.snippet.thumbnails.high.url}', alt='#{rel.snippet.title}')
+                        a(href='/#{rel.snippet.slug}/#{rel.id.videoId}')
+                          .img-hover
+                      h3
+                        a(title='#{rel.snippet.title}', href='/#{rel.snippet.slug}/#{rel.id.videoId}')
+                          | #{rel.snippet.title}
+                      .meta
+                        span.date 1 year ago
+                        span.views
+                          i.fa.fa-eye
+                          | 3437
+                        span.heart
+                          i.fa.fa-heart
+                          | 465
+                        span.fcomments
+                          i.fa.fa-comments
+                          | 0
+
                 .item
                   .col-sm-4.col-xs-6.item.responsive-height.mars-relatedvideo-widgets-2-267
                     .item-img
