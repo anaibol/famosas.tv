@@ -9,15 +9,16 @@ head
 
   if vid
     if vid.snippet.tags
-      meta(name="keywords", content="#{vid.snippet.tags.join(',')}")
-
-  //- meta(name="keywords", content="Famosas desnudas, chicas desnudas, mujeres desnudas, chicas, mujeres, mujeres hermosas, chicas hermosas, hermosas")
+      meta(name="keywords", content=vid.snippet.tags.join(',')})
+  else
+    meta(name="keywords", content="Famosas desnudas, chicas desnudas, mujeres desnudas, chicas, mujeres, mujeres hermosas, chicas hermosas, hermosas")
 
   title= title
-  //- meta(property='og:title', content=vid.title)
-  meta(name="description", content="#{title}")
+  meta(property='og:title', content=title)
+  meta(name="description", content=title)
+  meta(name="title", content=title)
 
-  //- meta(property='og:title', content=Famosas desnudas!)
+
   //- link(property='og:image', rel='image_wooepa', href="/img/logo_wooepa.png")
   //- link(href='/favicon.ico', rel='shortcut icon', type='image/x-icon')
 
@@ -29,7 +30,7 @@ head
 
   //- meta(property='og:site_name', content='Wooepa')
   //- meta(property='fb:admins', content='APP_ADMIN')
-  //- meta(name='msvalidate.01', content='741DD559CC819DECAF2AA49D92578598')
+  meta(name='msvalidate.01', content='A266ADF3D0D485002914A27C0E2D2D01')
   meta(name='google-site-verification', content='kW_9kUdx-UAUb86Ys327riMyCzvJgmlFMKN4JjIzVFA')
   //- link(href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600', rel='stylesheet', type='text/css')
 
