@@ -53,7 +53,7 @@ router.get('/', function(req, res) {
       videos[i].snippet.slug = slug(videos[i].snippet.title);
     }
 
-    res.render('list', {vids: videos});
+    res.render('list', {vids: videos, meta: data.pageInfo});
   });
 });
 
