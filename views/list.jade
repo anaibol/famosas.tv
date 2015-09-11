@@ -36,6 +36,13 @@ block content
                 span.fcomments
                   i.fa.fa-comments
                   | 6
+
+          .col-sm-12
+            span.meta-info Related keywords
+              if relatedKeywords
+                each keyword in relatedKeywords
+                  a(href='/#{keyword}', rel='keyword') #{keyword}
+
       .col-sm-4.sidebar
         .widget.mars-subscribox-widget
           h4.widget-title Social Subscribox

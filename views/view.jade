@@ -75,6 +75,12 @@ block content
                 each tag in vid.snippet.tags
                   a(href='/#{tag}', rel='tag') #{tag}
 
+          span.meta
+            span.meta-info Related keywords
+              if relatedKeywords
+                each keyword in relatedKeywords
+                  a(href='/#{keyword}', rel='keyword') #{keyword}
+
         #carousel-latest-mars-relatedvideo-widgets-2.carousel.carousel-mars-relatedvideo-widgets-2.slide.video-section(data-ride='carousel')
           .section-header
             h3 Related Videos
@@ -86,7 +92,7 @@ block content
             .row
               .carousel-inner
                 .item.active
-                  each rel in vid.related
+                  each rel in vid.relatedVideos
                     .col-sm-4.col-xs-6.item.responsive-height.mars-relatedvideo-widgets-2-275
                       .item-img
                         a(title='#{rel.snippet.title}', href='/#{rel.snippet.slug}/#{rel.id.videoId}')

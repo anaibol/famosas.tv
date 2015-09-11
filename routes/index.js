@@ -15,7 +15,7 @@ youtube.addParam('videoEmbeddable', 'true');
 var db = require('monk')('localhost/famosas');
 var Keywords = db.get('keywords');
 
-var numVideos = 20;
+var videosPerPage = 20;
 
 function slug(str) {
   str = str.replace(/^\s+|\s+$/g, ''); // trim
@@ -39,45 +39,86 @@ function replaceAll(str, target, replacement) {
   return str.split(target).join(replacement);
 }
 
-/* GET home page. */
-router.get('/', function(req, res) {
-  youtube.search('famosas desnudas', numVideos, function(err, data){
+function searchVideos(searchTerm, num, cb) {
+  youtube.search(searchTerm, num, function(err, data){
     if (err) {
       console.log(err);
       return;
     }
 
     var videos = data.items;
+    var meta = data.pageInfo;
 
     for (var i = videos.length - 1; i >= 0; i--) {
       videos[i].snippet.slug = slug(videos[i].snippet.title);
     }
 
-    res.render('list', {vids: videos, meta: data.pageInfo});
+    cb(videos, meta);
+  });
+}
+
+function getRelatedKeywords(keyword, cb) {
+  Keywords.find({keyword: {$regex : '.*' + keyword + '.*'}}, function (err, keywords) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+
+    var relatedKeywords = [];
+
+    keywords.forEach(function(keyword) {
+      relatedKeywords.push(keyword.keyword);
+    })
+
+    cb(relatedKeywords);
+  });
+}
+
+function getRelatedVideos(id, num, cb) {
+  youtube.related(id, num, function(err, data) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+
+    var related = data.items;
+
+    related.forEach(function(vid) {
+      vid.snippet.slug = slug(vid.snippet.title);
+    })
+
+    cb(related);
+  });
+}
+
+/* GET home page. */
+router.get('/', function(req, res) {
+  var keyword = 'famosas desnudas';
+  searchVideos(keyword, videosPerPage, function(videos, meta){
+    getRelatedKeywords(keyword, function(relatedKeywords) {
+      res.render('list', {vids: videos, title: keyword, meta: meta, relatedKeywords: relatedKeywords});
+    });
   });
 });
 
 router.get('/:keyword', function(req, res) {
   if (req.params.keyword.indexOf(' ') > 0) {
     var keywordSlug = slug(req.params.keyword);
+
     Keywords.insert({keyword: req.params.keyword, slug: keywordSlug});
     res.redirect(keywordSlug);
   } else {
     var searchTerm = replaceAll(req.params.keyword, '-', ' ');
-    youtube.search(searchTerm, numVideos, function(err, data){
-      if (err) {
-        console.log(err);
-        return;
-      }
 
-      var videos = data.items;
-
-      videos.forEach(function(vid) {
+    searchVideos(searchTerm, videosPerPage, function(vids, meta) {
+      vids.forEach(function(vid) {
         vid.snippet.slug = slug(vid.snippet.title);
       })
 
-      res.render('list', {vids: videos, title: req.params.keyword, meta: data.pageInfo});
-    });
+      getRelatedKeywords(searchTerm, function(relatedKeywords) {
+        res.render('list', {vids: vids, title: req.params.keyword, meta: meta, relatedKeywords: relatedKeywords});
+      });
+    })
   }
 });
 
@@ -86,24 +127,19 @@ router.get('/:slug/:id', function(req, res) {
     var vid = data.items[0];
     vid.snippet.slug = slug(vid.snippet.title);
 
-    youtube.related(req.params.id, 6, function(err, data) {
-      if (err) {
-        console.log(err);
-        return;
-      }
+    if (req.params.slug !== vid.snippet.slug) {
+      res.redirect('/' + vid.snippet.slug + '/' + vid.id);
 
-      if (data) {
-        var related = data.items;
+    } else {
+      getRelatedVideos(req.params.id, 6, function(relatedVideos) {
+        vid.relatedVideos = relatedVideos;
 
-        related.forEach(function(vid) {
-          vid.snippet.slug = slug(vid.snippet.title);
-        })
+        getRelatedKeywords(vid.snippet.slug, function(relatedKeywords) {
+          res.render('view', {vid: vid, title: vid.snippet.title, relatedKeywords: relatedKeywords});
+        });
 
-        vid.related = related;
-
-        res.render('view', {vid: vid, title: vid.snippet.title});
-      }
-    });
+      });
+    }
   });
 });
 
