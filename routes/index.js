@@ -58,7 +58,7 @@ function searchVideos(searchTerm, num, cb) {
 }
 
 function getRelatedKeywords(keyword, cb) {
-  Keywords.find({keyword: {$regex : '.*' + keyword + '.*'}}, function (err, keywords) {
+  Keywords.find({keyword: {$regex : '.*' + keyword + '.*'}}, {limit : 10}, function (err, keywords) {
     if (err) {
       console.log(err);
       return;
