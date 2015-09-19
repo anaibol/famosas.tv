@@ -139,37 +139,39 @@ block content
           .textwidget
             img(src='http://placehold.it/750x100')
         .comments
-          .section-header
-            h3
-          ul.list-unstyled.comment-list
-          #respond.comment-respond
-            h3#reply-title.comment-reply-title
-              | Add your comment
-              small
-                a#cancel-comment-reply-link(rel='nofollow', href='/video/jenna-marbles/#respond', style='display:none;') Cancel Reply
-            form#commentform.comment-form(action='http://videotube.marstheme.com/wp-comments-post.php', method='post')
-              p.comment-notes Your email address will not be published.
-              .form-group
-                label(for='author') Your Name
-                input#author.form-control(type='text', name='author', placeholder='Enter name', value='')
-              .form-group
-                label(for='email') Your Email
-                input#email.form-control(type='text', name='email', placeholder='Enter Email', value='')
-              .form-group
-                label(for='url') Website
-                input#url.form-control(type='text', name='url', placeholder='Enter Website', value='')
-              .form-group
-                label(for='comment') Comment
-                textarea#comment.form-control(aria-required='true', name='comment', rows='6')
-              p.form-submit
-                input#submit.btn-1(name='submit', type='submit', value='Submit')
-                input#comment_post_ID(type='hidden', name='comment_post_ID', value='273')
-                input#comment_parent(type='hidden', name='comment_parent', value='0')
-              p(style='display: none;')
-                input#akismet_comment_nonce(type='hidden', name='akismet_comment_nonce', value='9b493cc508')
-              p(style='display: none;')
-                input#ak_js(type='hidden', name='ak_js', value='101')
-          // #respond
+          //- .section-header
+          //-   h3
+          //- ul.list-unstyled.comment-list
+          //- #respond.comment-respond
+          //-   h3#reply-title.comment-reply-title
+          //-     | Add your comment
+          //-     small
+          //-       a#cancel-comment-reply-link(rel='nofollow', href='/video/jenna-marbles/#respond', style='display:none;') Cancel Reply
+          //-   form#commentform.comment-form(action='http://videotube.marstheme.com/wp-comments-post.php', method='post')
+          //-     p.comment-notes Your email address will not be published.
+          //-     .form-group
+          //-       label(for='author') Your Name
+          //-       input#author.form-control(type='text', name='author', placeholder='Enter name', value='')
+          //-     .form-group
+          //-       label(for='email') Your Email
+          //-       input#email.form-control(type='text', name='email', placeholder='Enter Email', value='')
+          //-     .form-group
+          //-       label(for='url') Website
+          //-       input#url.form-control(type='text', name='url', placeholder='Enter Website', value='')
+          //-     .form-group
+          //-       label(for='comment') Comment
+          //-       textarea#comment.form-control(aria-required='true', name='comment', rows='6')
+          //-     p.form-submit
+          //-       input#submit.btn-1(name='submit', type='submit', value='Submit')
+          //-       input#comment_post_ID(type='hidden', name='comment_post_ID', value='273')
+          //-       input#comment_parent(type='hidden', name='comment_parent', value='0')
+          //-     p(style='display: none;')
+          //-       input#akismet_comment_nonce(type='hidden', name='akismet_comment_nonce', value='9b493cc508')
+          //-     p(style='display: none;')
+          //-       input#ak_js(type='hidden', name='ak_js', value='101')
+          //- // #respond
+
+          .fb-comments(data-href="http://famosas.tv/#{vid.snippet.slug}/#{vid.id}" data-version="v2.3")
       .col-sm-4.sidebar
         .widget.mars-subscribox-widget
           h4.widget-title Social Subscribox

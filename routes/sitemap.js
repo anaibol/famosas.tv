@@ -113,8 +113,8 @@ function generateSitemap(id, host, siteMapFile, cb) {
     var month;
     var day;
 
-    for (var i = 0; i < keywords.length; i++) {
-      keyword = keywords[i];
+
+    keywords.forEach(function(keyword) {
       //date = new Date(post.dateModified);
       //month = ('0' + date.getMonth() + 1).slice(-2);
       //day = ('0' + date.getDate()).slice(-2);
@@ -127,7 +127,7 @@ function generateSitemap(id, host, siteMapFile, cb) {
       //xml += '<changefreq>' + freq + '</changefreq>';
       //xml += '<priority>' + priority + '</priority>';
       xml += '</url>';
-    }
+    });
 
     xml += '</urlset>';
 

@@ -102,13 +102,15 @@ router.get('/', function(req, res) {
 });
 
 router.get('/:keyword', function(req, res) {
-  if (req.params.keyword.indexOf(' ') > 0) {
-    var keywordSlug = slug(req.params.keyword);
+  // if (req.params.keyword.indexOf(' ') > 0) {
+  //   var keywordSlug = slug(req.params.keyword);
 
-    Keywords.insert({keyword: req.params.keyword, slug: keywordSlug});
-    res.redirect(keywordSlug);
-  } else {
+  //   Keywords.insert({keyword: req.params.keyword, slug: keywordSlug});
+  //   res.redirect(keywordSlug);
+  // } else {
     var searchTerm = replaceAll(req.params.keyword, '-', ' ');
+
+    Keywords.findAndModify({keyword: searchTerm}, {$inc: {visits: 1}});
 
     searchVideos(searchTerm, videosPerPage, function(vids, meta) {
       vids.forEach(function(vid) {
@@ -119,7 +121,7 @@ router.get('/:keyword', function(req, res) {
         res.render('list', {vids: vids, title: req.params.keyword, meta: meta, relatedKeywords: relatedKeywords});
       });
     })
-  }
+  // }
 });
 
 router.get('/:slug/:id', function(req, res) {
