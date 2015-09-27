@@ -93,7 +93,9 @@ function getRelatedVideos(id, num, cb) {
 
 /* GET home page. */
 router.get('/', function(req, res) {
+
   var keyword = 'famosas desnudas';
+
   searchVideos(keyword, videosPerPage, function(videos, meta){
     getRelatedKeywords(keyword, function(relatedKeywords) {
       res.render('list', {vids: videos, title: keyword, meta: meta, relatedKeywords: relatedKeywords});
@@ -127,6 +129,11 @@ router.get('/:keyword', function(req, res) {
 router.get('/:slug/:id', function(req, res) {
   youtube.getById(req.params.id, function(err, data) {
     var vid = data.items[0];
+
+    if (!vid) {
+      res.send('The video has been removed');
+    }
+
     vid.snippet.slug = slug(vid.snippet.title);
 
     if (req.params.slug !== vid.snippet.slug) {
