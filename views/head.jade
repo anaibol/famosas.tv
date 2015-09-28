@@ -75,3 +75,29 @@ head
   //- link#kgvid_video_styles-css(rel='stylesheet', href='http://videotube.marstheme.com/wp-content/plugins/video-embed-thumbnail-generator/css/kgvid_styles.css?ver=4.505', type='text/css', media='all')
   //- link#ebs_dynamic_css-css(rel='stylesheet', href='http://videotube.marstheme.com/wp-content/plugins/easy-bootstrap-shortcodes/styles/ebs_dynamic_css.php?ver=4.3', type='text/css', media='all')
   //- link#wppb_stylesheet-css(rel='stylesheet', href='http://videotube.marstheme.com/wp-content/plugins/profile-builder/assets/css/style-front-end.css?ver=4.3', type='text/css', media='all')
+
+  script(type='text/javascript').
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-59531296-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    window.fbAsyncInit = function() {
+    FB.init({
+    appId      : '746531335472835',
+    xfbml      : true,
+    version    : 'v2.4'
+    });
+    };
+
+    (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
